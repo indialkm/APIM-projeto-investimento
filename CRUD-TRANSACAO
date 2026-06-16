@@ -1,0 +1,522 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: api-investimento
+meta:
+  id: wrk_045ff5556adc4e8ba2c3afa6986f91e3
+  created: 1781137219786
+  modified: 1781291973682
+  description: ""
+collection:
+  - name: Usuario
+    meta:
+      id: fld_4f902e782c0f4a41a415761fa362cdb2
+      created: 1781138796291
+      modified: 1781634413288
+      sortKey: -1781138796291
+      description: ""
+    children:
+      - url: "{{url}}api/users/register"
+        name: Cadastrando Usuario
+        meta:
+          id: req_56834a74b6034a0497f4f6a6d3966ba5
+          created: 1781137219792
+          modified: 1781358303751
+          isPrivate: false
+          description: ""
+          sortKey: -1781138804097
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Ingrid",
+              "email": "ingrid@example.com",
+              "senha": "senhaSegura123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/auth/authenticate"
+        name: Autenticação Login
+        meta:
+          id: req_a2d6aad7fe5a4ff9a7377f5b33715365
+          created: 1781138287570
+          modified: 1781358418553
+          isPrivate: false
+          description: ""
+          sortKey: -1781138804197
+        method: POST
+        body:
+          mimeType: application/json
+          text: |2-
+             {
+            	"username":"ingrid@example.com",
+              "password": "senhaSegura123"
+             }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        scripts:
+          afterResponse: >-
+            // 1. Extrai o corpo da resposta em formato JSON usando o objeto
+            correto
+
+            const tokenPuro = insomnia.response.text();
+
+
+            // 2. Captura o valor que você precisa (ex: o campo 'token')
+
+            const tokenLimpo = tokenPuro.trim();
+
+
+            // 3. Salva na variável de ambiente do aplicativo
+
+            insomnia.environment.set("token", tokenLimpo);
+
+
+            // Exibe o valor no console para checagem rápida
+
+            console.log("Token capturado:", tokenLimpo);
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/users/1"
+        name: Procurar por Id
+        meta:
+          id: req_957d9810318047518666f47099786313
+          created: 1781138824637
+          modified: 1781140166713
+          isPrivate: false
+          description: ""
+          sortKey: -1781138803997
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          disabled: true
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/users"
+        name: Procurar todos
+        meta:
+          id: req_89c9cd2319084f36a01aa8a3c0e09bec
+          created: 1781138840848
+          modified: 1781140407692
+          isPrivate: false
+          description: ""
+          sortKey: -1781138803897
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/users/1"
+        name: Atualizar Usuario
+        meta:
+          id: req_aca056a164354663b5877bff54909994
+          created: 1781138851934
+          modified: 1781139042938
+          isPrivate: false
+          description: ""
+          sortKey: -1781138803797
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Catarina dos Santos"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHkiLCJzdWIiOiJjYXRhcmluYS5hbGtpbWltQGV4YW1wbGUuY29tIiwiZXhwIjoxNzgxMTQyMjczLCJpYXQiOjE3ODExMzg2NzMsInVzZXJJZCI6MX0.JEBCmdWXcytXLAs9Ep2x2ROkFDsolgpaM74ExVZTB1BbBZg9OFQYDbNRpYwDPs_wNhcz9vSzMz-cfaFT2HpxIvBziiOwEMh6Q_w5aG0b134VvpL_W2OAx1rlcflkzoMRe4lcIAB3ycos6yDAvxZbeEZMSyfAu5l0Qg1c6zQrlBjD3ARAPnnKduj0YDxOaJR7fleQhZ_TVKEGhBCkHoJiiOwaoo7aCuVOwgxsv8UMeaAeMVYqkBXmddaGpDpHZ7d8__5dUn55-RIlkhwVx1IdHKI8TM-isEu_0cZOw2Kqn6p0WYhwP0Re6_BwXcB_CdhaGpMc42tWhKwJtHuw7dFw4A
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/users/2"
+        name: Deletar Usuario
+        meta:
+          id: req_461d2fca80434549b7c4764a23df6657
+          created: 1781138870505
+          modified: 1781139107086
+          isPrivate: false
+          description: ""
+          sortKey: -1781138803697
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHkiLCJzdWIiOiJkZWxAZXhhbXBsZS5jb20iLCJleHAiOjE3ODExNDI2ODEsImlhdCI6MTc4MTEzOTA4MSwidXNlcklkIjoyfQ.DwYmw4TiBc-Di80ZeLJI8w6nW_WuGd2GTx-wy4EpH3oUiM6vhtXH9fWFgB3DOvXBgHMauM_smjoEA45ex8Gl6cIh7QYBPfPpzfzkyRR7AEUdZhGPrsubCeNggTJsijaqVL8WJ4kuu0f9yq2JiD9kzspZd6oPxHH3HVBFH0Wliru-5-aQhnMz8cI2LM3GO1Hu67J5B5f6yVf4N8aafhE4kFpBUygJMClUIEzA0QUFYBbkLGVELr9qdL8qtb3386ujozKDdfQ07rwI-uGyZ6PU44gr3ZAa7-ZpqauhPsm5H-28WI3yrSB5RATglaaoYwnLKBrbudL_IfHLjvm8D8nfnQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Carteira
+    meta:
+      id: fld_749719a53e5d4aab9ab6ca63b2126464
+      created: 1781280780924
+      modified: 1781280780924
+      sortKey: -1781280780924
+      description: ""
+    children:
+      - url: "{{url}}api/carteiras"
+        name: Criar Carteira
+        meta:
+          id: req_e41f63f45d4649fb9495ce72ab388472
+          created: 1781280783439
+          modified: 1781292292713
+          isPrivate: false
+          description: ""
+          sortKey: -1781280786872
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+                "nome": "Carteira de Longo Prazo",
+                "descricao": "Focada em ações de dividendos e fundos imobiliários."
+              }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/carteiras/1"
+        name: Buscar Carteira Especifica
+        meta:
+          id: req_bb6f9f0b190f48e9b649e828cffd664d
+          created: 1781280842703
+          modified: 1781359710763
+          isPrivate: false
+          description: ""
+          sortKey: -1781280786772
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          disabled: false
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/carteiras"
+        name: Buscar Carteiras de Usuario
+        meta:
+          id: req_5b58a9872ee34369a6479edab8aced38
+          created: 1781280854579
+          modified: 1781359724086
+          isPrivate: false
+          description: ""
+          sortKey: -1781280786672
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/carteiras/1"
+        name: Atualizar Carteira
+        meta:
+          id: req_cc635d91dc444d5bab54ee90ec2c6ee9
+          created: 1781282407820
+          modified: 1781359731671
+          isPrivate: false
+          description: ""
+          sortKey: -1781280786572
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "nome": "Carteira de Longo Curto"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          disabled: false
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/carteiras/1/ativos"
+        name: Adicionando Carteira Ativo
+        meta:
+          id: req_bb3297177b684149a19e5358b8ff6849
+          created: 1781291912257
+          modified: 1781631053859
+          isPrivate: false
+          description: ""
+          sortKey: -1781291912257
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "carteiraId": 1,
+              "ativoId": 1,
+              "quantidade": 20,
+              "precoEntrada": 34.75
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Ativo
+    meta:
+      id: fld_05097d3d98804ba6b1160d40f8d39a50
+      created: 1781288200975
+      modified: 1781291930855
+      sortKey: -1781288200975
+      description: ""
+    children:
+      - url: "{{url}}api/ativos"
+        name: Adicionar Ativo
+        meta:
+          id: req_59077c9ae2af4f1690f8f8c5a5b5cb55
+          created: 1781291933655
+          modified: 1781634072210
+          isPrivate: false
+          description: ""
+          sortKey: -1781291934964
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"ticker": "VALE3",
+            	"nome": "Vale S.A.",
+            	"tipoAtivo": "RENDA_VARIAVEL"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}api/ativos"
+        name: Buscar todos ativos
+        meta:
+          id: req_54708efb260d40dd95bdec84b9974e1f
+          created: 1781633271739
+          modified: 1781635419806
+          isPrivate: false
+          description: ""
+          sortKey: -1781633271739
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Transacao
+    meta:
+      id: fld_fbfe6bcba3444746ae504a212e31f423
+      created: 1781378189946
+      modified: 1781635398052
+      sortKey: -1781378189946
+      description: ""
+    children:
+      - url: "{{url}}api/transacoes/carteiras/1/ativos/1"
+        name: New Request
+        meta:
+          id: req_39f75b6564c54033a7ce9f017da2c83c
+          created: 1781378192609
+          modified: 1781634452101
+          isPrivate: false
+          description: ""
+          sortKey: -1781378192609
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "carteiraId": 1,
+              "ativoId": 1,
+              "tipo": "VENDA",
+              "quantidade": 1,  
+            	"precoUnitario": 20.50,
+              "data": "2026-06-14T00:00:00" 
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_14d9faaf4dc95119ab74c9cdefcaebb908b84560
+    created: 1781137219789
+    modified: 1781634413286
+environments:
+  name: Base Environment
+  meta:
+    id: env_14d9faaf4dc95119ab74c9cdefcaebb908b84560
+    created: 1781137219788
+    modified: 1781634413287
+    isPrivate: false
+  data:
+    url: http://localhost:8080/
+    token: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHkiLCJzdWIiOiJpbmdyaWRAZXhhbXBsZS5jb20iLCJleHAiOjE3ODE2MzgwMTMsImlhdCI6MTc4MTYzNDQxMywidXNlcklkIjoxfQ.ZbsROh2OIRlSQCjoO0GhJKBbLbxto5pU5iMZjtB5BVfEZhL45c8RPOwoBbUUqBamM4vRj51F390AyGAJIDB0rFpWHt_SAl7Pr0s1QD0b1-c89AvTRyN-TudyOPUtHLZ7nzVP6Gv1HpF02q5zpekCPBTex1nFG4_3Bh66JKjR7uJQvmrEr-CaBEPLritaNDHXJpLwMMSPmpVHZDrHk-xaFuBCB2EnnaauUWobd7JQQAmBCeOQFxlsnFGz847aFkMrkQJSXGZezE48KhlqRrptBDqS0FpuWcgs_bsiDmBPSmIAMKi7NkdQXv3gfpTb3fBXTPJv6Wij3fUtzJpzNzOQ6Q
