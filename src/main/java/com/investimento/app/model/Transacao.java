@@ -56,4 +56,7 @@ public class Transacao {
     @Column(name = "imposto_retido", precision = 18, scale = 2)
     private BigDecimal impostoRetido;
     
+    @Column(name = "valor_total", nullable = false, precision = 18, scale = 2)
+    private BigDecimal valorTotal;
+    
 }

@@ -1,10 +1,15 @@
 package com.investimento.app.model;
 
 import java.util.List;
+import java.util.Optional;
+
+import com.investimento.app.model.enums.TipoAtivo;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +21,6 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 
 @Entity
@@ -36,14 +40,12 @@ public class Ativo {
     @Column(nullable = false)
     private String nome;
 
-    @Column(name = "tipo_ativo")
-    private String tipoAtivo;
-
-    @OneToMany(mappedBy = "ativo")
-    private List<CarteiraAtivo> carteiras;
+    @Enumerated(EnumType.STRING) 
+    @Column(nullable = false)
+    private TipoAtivo tipoAtivo;
 
     @OneToMany(mappedBy = "ativo")
     private List<Historico> historicos;
     
-    private boolean ativo = true;
+    private Boolean status = true;
 }

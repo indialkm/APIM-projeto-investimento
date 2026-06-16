@@ -43,15 +43,23 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http,
             CustomJwtAuthenticationConverter customJwtAuthenticationConverter) throws Exception {
         http.csrf(csrf -> csrf.disable())
+        
+        .headers(headers -> headers
+                .frameOptions(frame -> frame.sameOrigin())
+            )
+        
         .authorizeHttpRequests(auth -> auth
               
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/api/auth/authenticate").permitAll()
                 .requestMatchers("/api/users/register").permitAll()
-                
-                
-                /*.anyRequest().authenticated())*/
-                .anyRequest().permitAll()) //Por enquanto deixando todas as rotas abertas porque estamos criando as funcionalidades ainda, terminar o proejto não podemos esquecer de fechar
+                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/carteiras/**").authenticated()
+                .requestMatchers("/api/transacoes/**").authenticated()
+                .requestMatchers("/api/ativos/**").authenticated()
+                .anyRequest().authenticated())
+                /*.anyRequest().permitAll()) Por enquanto deixando todas as rotas abertas porque estamos criando as funcionalidades ainda, terminar o proejto não podemos esquecer de fechar*/
                 
                 .oauth2ResourceServer(
                         conf -> conf.jwt(jwt -> jwt.jwtAuthenticationConverter(customJwtAuthenticationConverter)))

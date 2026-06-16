@@ -34,6 +34,7 @@ public class UserAuthenticated implements UserDetails {
     public String getUsername() {
         return usuario.getEmail();
     }
+    
 
     @Override
     public boolean isAccountNonExpired() {

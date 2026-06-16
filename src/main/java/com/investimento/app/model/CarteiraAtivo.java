@@ -3,9 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-
-
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "carteira_ativo")
@@ -25,6 +23,8 @@ public class CarteiraAtivo {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("ativoId")
     @JoinColumn(name = "ativo_id")
+    @ToString.Exclude            
+    @EqualsAndHashCode.Exclude 
     private Ativo ativo;
 
     @Column(nullable = false, precision = 18, scale = 4)
@@ -32,4 +32,12 @@ public class CarteiraAtivo {
 
     @Column(name = "preco_entrada", nullable = false, precision = 18, scale = 4)
     private BigDecimal precoEntrada;
+    
+    public BigDecimal getValorTotalInvestido() {
+        if (this.quantidade != null && this.precoEntrada != null) {
+            return this.quantidade.multiply(this.precoEntrada)
+                       .setScale(2, RoundingMode.HALF_UP);
+        }
+        return BigDecimal.ZERO;
+    }
 }

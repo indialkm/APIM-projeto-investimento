@@ -39,7 +39,7 @@ public class Usuario {
     private String senha;
 
     //Usei o cascade como all e o orphanRemoval true para quando excluir usuário também excluir a carteira dele :)
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Carteira> carteiras;
     
     private boolean ativo = true;
