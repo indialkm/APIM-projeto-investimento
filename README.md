@@ -28,9 +28,9 @@ Permitir que cada investidor administre várias carteiras de investimentos, cada
     * Cada carteira deve possuir obrigatoriamente um nome e uma descrição.
     * O usuário deve conseguir visualizar a lista completa de carteiras cadastradas.
 * **Definição de Pronto (DoD):**
-    * [ ] Funcionalidade implementada na interface e no backend.
-    * [ ] Dados persistidos corretamente no banco de dados.
-    * [ ] Testes unitários e integrados realizados com sucesso.
+    * [x] Funcionalidade implementada na interface e no backend.
+    * [x] Dados persistidos corretamente no banco de dados.
+    * [x] Testes unitários e integrados realizados com sucesso.
 
 #### História de Usuário 2
 > **Como** investidor,  
@@ -43,8 +43,8 @@ Permitir que cada investidor administre várias carteiras de investimentos, cada
     * Permitir a remoção de ativos existentes na carteira.
     * Exibir a listagem atualizada de ativos por carteira selecionada.
 * **Definição de Pronto (DoD):**
-    * [ ] Operações de CRUD de ativos 100% implementadas.
-    * [ ] Testes validados e sem quebras de regressão.
+    * [x] Operações de CRUD de ativos 100% implementadas.
+    * [x] Testes validados e sem quebras de regressão.
 
 ---
 
@@ -62,9 +62,9 @@ Possibilitar o registro de transações de compra e venda de ativos em cada cart
     * Informar obrigatoriamente a quantidade do ativo, preço unitário e data da operação.
     * Disponibilizar uma tela ou seção com o histórico completo de transações efetuadas.
 * **Definição de Pronto (DoD):**
-    * [ ] Funcionalidade de movimentação financeira implementada.
-    * [ ] Validação rigorosa de dados de entrada realizada (evitar valores negativos ou datas futuras).
-    * [ ] Persistência correta e íntegra no banco de dados.
+    * [x] Funcionalidade de movimentação financeira implementada.
+    * [x] Validação rigorosa de dados de entrada realizada (evitar valores negativos ou datas futuras).
+    * [x] Persistência correta e íntegra no banco de dados.
 
 ---
 
